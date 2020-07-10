@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 const express = require('express');
 const morgan = require('morgan');
-// const path = require('path');
+const path = require('path');
 
 const stockRoutes = require('./Routes/stocks');
 
@@ -21,6 +21,8 @@ app.use(express.json());
 app.use(stockRoutes);
 
 // Static Files
+const index = path.join(__dirname, '../build');
+app.use(express.static(index));
 
 // Stating Server
 app.listen(app.get('port'), () => {
