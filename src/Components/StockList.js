@@ -88,8 +88,10 @@ const StockList = () => {
     setLoading(true);
     setMessage(null);
     try {
-      const res = await axios.put(`api/stocks/${item.id}`, { status: !item.status });
-      const index = stocks.findIndex((p) => p.id === item.id);
+      const editing = { ...item };
+      editing.status = !editing.status;
+      const res = await axios.put(`api/stocks/${item._id}`, editing);
+      const index = stocks.findIndex((p) => p._id === item._id);
       const auxStocks = [...stocks];
       auxStocks[index] = { ...auxStocks[index], status: !auxStocks[index].status };
       setStocks(auxStocks);
