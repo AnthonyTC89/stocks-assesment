@@ -1,5 +1,4 @@
 /* eslint-disable no-alert */
-/* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
@@ -18,6 +17,7 @@ import IconButton from '@material-ui/core/IconButton';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import StockForm from './StockForm';
 import LoadingGif from './LoadingGif';
 import { StockInfo } from '../Info.json';
 
@@ -51,7 +51,6 @@ const StockList = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [stocks, setStocks] = useState([]);
-  // eslint-disable-next-line no-unused-vars
   const [editItem, setEditItem] = useState();
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState(null);
@@ -62,7 +61,6 @@ const StockList = () => {
     setShowForm(true);
   };
 
-  // eslint-disable-next-line no-unused-vars
   const closeForm = (item) => {
     setMessage(null);
     setShowForm(false);
@@ -153,7 +151,7 @@ const StockList = () => {
   }, []);
 
   if (showForm) {
-    return <div>Form</div>;
+    return <StockForm closeForm={closeForm} editItem={editItem} />;
   }
   return (
     <Paper className={classes.root}>
@@ -166,7 +164,7 @@ const StockList = () => {
       <LoadingGif visible={loading} />
       <IconButton
         align="center"
-        aria-label="delete"
+        aria-label="open"
         color="primary"
         disabled={loading}
         onClick={openForm}
