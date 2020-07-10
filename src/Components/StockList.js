@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -34,8 +35,8 @@ const useStyles = makeStyles({
 const columns = [
   { id: 'name', label: 'Name', minWidth: 150, align: 'center' },
   { id: 'currentPrice', label: 'Current Price', minWidth: 150, align: 'center' },
-  { id: 'status', label: 'status', minWidth: 50, align: 'center' },
-  { id: 'actions', label: 'actions', minWidth: 50, align: 'center' },
+  { id: 'status', label: 'Status', minWidth: 50, align: 'center' },
+  { id: 'actions', label: 'Actions', minWidth: 50, align: 'center' },
 ];
 
 const defaultStock = {
@@ -126,20 +127,23 @@ const StockList = () => {
   };
 
   const handleDelete = async (item) => {
-    setLoading(true);
-    setMessage(null);
-    try {
-      await axios.delete(`api/stocks/${item.id}`);
-      const auxStocks = stocks.filter((p) => p.id !== item.id);
-      setStocks(auxStocks);
-    } catch (err) {
-      if (err.statusText) {
-        setMessage(err.statusText);
-      } else {
-        setMessage(err.response.statusText);
+    const confirmation = window.confirm('Want to delete?');
+    if (confirmation) {
+      setLoading(true);
+      setMessage(null);
+      try {
+        await axios.delete(`api/stocks/${item._id}`);
+        const auxStocks = stocks.filter((p) => p._id !== item._id);
+        setStocks(auxStocks);
+      } catch (err) {
+        if (err.statusText) {
+          setMessage(err.statusText);
+        } else {
+          setMessage(err.response.statusText);
+        }
+      } finally {
+        setLoading(false);
       }
-    } finally {
-      setLoading(false);
     }
   };
 
