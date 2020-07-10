@@ -61,13 +61,30 @@ const StockList = () => {
     setShowForm(true);
   };
 
+  const getStocks = async () => {
+    setLoading(true);
+    setMessage(null);
+    try {
+      const res = await axios.get('/api/stocks');
+      if (res.data.length === 0) {
+        openForm();
+      } else {
+        setStocks(res.data);
+      }
+    } catch (err) {
+      setMessage(err.response.statusText);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const closeForm = (item) => {
     setMessage(null);
     setShowForm(false);
-    if (item.id) {
-      if (stocks.some((s) => s.id === item.id)) {
-        const auxStocks = stocks.filter((i) => i.id !== item.id);
-        setStocks([item, ...auxStocks]);
+    if (item._id) {
+      if (stocks.some((s) => s._id === item._id)) {
+        setStocks([]);
+        getStocks();
       } else {
         setStocks([...stocks, item]);
       }
@@ -95,23 +112,6 @@ const StockList = () => {
       auxStocks[index] = { ...auxStocks[index], status: !auxStocks[index].status };
       setStocks(auxStocks);
       setMessage(res.statusText);
-    } catch (err) {
-      setMessage(err.response.statusText);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const getStocks = async () => {
-    setLoading(true);
-    setMessage(null);
-    try {
-      const res = await axios.get('/api/stocks');
-      if (res.data.length === 0) {
-        openForm();
-      } else {
-        setStocks(res.data);
-      }
     } catch (err) {
       setMessage(err.response.statusText);
     } finally {
