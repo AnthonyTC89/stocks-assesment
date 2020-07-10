@@ -2,9 +2,7 @@ import React from 'react';
 import StockList from '../Components/StockList';
 
 const Home = () => (
-  <>
-    <StockList />
-  </>
+  <StockList />
 );
 
 export default Home;
