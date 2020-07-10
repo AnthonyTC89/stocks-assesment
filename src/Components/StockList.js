@@ -189,7 +189,7 @@ const StockList = () => {
           <TableBody>
             {stocks.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((item) => (
-                <TableRow hover tabIndex={-1} key={uuidv4()}>
+                <TableRow hover tabIndex={-1} key={uuidv4()} onClick={() => handleEdit(item)}>
                   <TableCell align="center">
                     {item.name}
                   </TableCell>
