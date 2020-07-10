@@ -1,9 +1,10 @@
 import React from 'react';
+import StockList from '../Components/StockList';
 
 const Home = () => (
-  <div>
-    React
-  </div>
+  <>
+    <StockList />
+  </>
 );
 
 export default Home;
