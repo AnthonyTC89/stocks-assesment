@@ -189,11 +189,11 @@ const StockList = () => {
           <TableBody>
             {stocks.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((item) => (
-                <TableRow hover tabIndex={-1} key={uuidv4()} onClick={() => handleEdit(item)}>
-                  <TableCell align="center">
+                <TableRow hover tabIndex={-1} key={uuidv4()}>
+                  <TableCell align="center" onClick={() => handleEdit(item)}>
                     {item.name}
                   </TableCell>
-                  <TableCell align="center">
+                  <TableCell align="center" onClick={() => handleEdit(item)}>
                     {item.currentPrice}
                   </TableCell>
                   <TableCell align="center">
