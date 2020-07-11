@@ -22,6 +22,7 @@
 * [About the Project](#about-the-project)
 * [Built With](#built-with)
 * [Installation](#installation)
+* [Docker](#docker)
 * [Scripts](#Scripts)
 * [Future Features](#Future-Features)
 * [Contact](#Contact)
@@ -52,8 +53,13 @@ A web portal to manage stocks. It's include adding, deleting, updating and listi
   4. create the file `.env` in the root with the next Variables:
     + USERNAME_MONGODB=admin
     + PASSWORD_MONGODB=admin
-  3. run `npm start`
-  7. go to [localhost:3001](http://localhost:3001)
+  5. run `npm start`
+  6. go to [localhost:3001](http://localhost:3001)
+
+### Docker
+
+  1. run `docker pull anthonytc89/stocks-assesment`
+  2. run `docker run -d -p 4000:3001 stocks-assesment`
 
 ### Scripts
 
