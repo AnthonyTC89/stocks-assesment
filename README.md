@@ -41,6 +41,7 @@ A web portal to manage stocks. It's include adding, deleting, updating and listi
 * [Node](https://nodejs.org/)
 * [Express](https://expressjs.com/)
 * [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+* [Docker](https://www.docker.com/)
 
 ### Pre-Installation
   1. npm version 6.14.5 or more
@@ -58,8 +59,10 @@ A web portal to manage stocks. It's include adding, deleting, updating and listi
 
 ### Docker
 
+  1. install [docker](https://www.docker.com/) 
   1. run `docker pull anthonytc89/stocks-assesment`
   2. run `docker run -d -p 4000:3001 stocks-assesment`
+  3. go to [localhost:4000]
 
 ### Scripts
 

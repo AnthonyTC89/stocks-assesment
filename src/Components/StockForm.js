@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import Grow from '@material-ui/core/Grow';
 import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -64,61 +65,63 @@ const StocksForm = ({ closeForm, editItem }) => {
   };
 
   return (
-    <Paper className={classes.root}>
-      <form className={classes.form} noValidate onSubmit={handleSubmit}>
-        <CssBaseline />
-        <Typography variant="h4" align="center" color="primary" gutterBottom>
-          {StockInfo.title}
-        </Typography>
-        <Typography variant="subtitle2" align="center" color="error" gutterBottom>
-          {message}
-        </Typography>
-        <LoadingGif visible={loading} />
-        <IconButton
-          aria-label="return"
-          disabled={loading}
-          onClick={closeForm}
-        >
-          <Avatar className={classes.avatar}>
-            <ArrowBackIcon />
-          </Avatar>
-        </IconButton>
-        <Container maxWidth="xs">
-          <Grid container spacing={3}>
-            <Grid item xs={12} className={classes.column}>
-              <TextField
-                margin="dense"
-                name="name"
-                variant="outlined"
-                id="name"
-                value={stock.name}
-                label="name"
-                onChange={handleChange}
-              />
-              <TextField
-                margin="dense"
-                name="currentPrice"
-                variant="outlined"
-                id="currentPrice"
-                type="number"
-                value={stock.currentPrice}
-                label="Price"
-                onChange={handleChange}
-              />
-              <Button
-                className={classes.button}
-                type="submit"
-                variant="contained"
-                color="primary"
-                disabled={loading}
-              >
-                {loading ? wait : btnText}
-              </Button>
+    <Grow in timeout={3000}>
+      <Paper className={classes.root}>
+        <form className={classes.form} noValidate onSubmit={handleSubmit}>
+          <CssBaseline />
+          <Typography variant="h4" align="center" color="primary" gutterBottom>
+            {StockInfo.title}
+          </Typography>
+          <Typography variant="subtitle2" align="center" color="error" gutterBottom>
+            {message}
+          </Typography>
+          <LoadingGif visible={loading} />
+          <IconButton
+            aria-label="return"
+            disabled={loading}
+            onClick={closeForm}
+          >
+            <Avatar className={classes.avatar}>
+              <ArrowBackIcon />
+            </Avatar>
+          </IconButton>
+          <Container maxWidth="xs">
+            <Grid container spacing={3}>
+              <Grid item xs={12} className={classes.column}>
+                <TextField
+                  margin="dense"
+                  name="name"
+                  variant="outlined"
+                  id="name"
+                  value={stock.name}
+                  label="name"
+                  onChange={handleChange}
+                />
+                <TextField
+                  margin="dense"
+                  name="currentPrice"
+                  variant="outlined"
+                  id="currentPrice"
+                  type="number"
+                  value={stock.currentPrice}
+                  label="Price"
+                  onChange={handleChange}
+                />
+                <Button
+                  className={classes.button}
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  disabled={loading}
+                >
+                  {loading ? wait : btnText}
+                </Button>
+              </Grid>
             </Grid>
-          </Grid>
-        </Container>
-      </form>
-    </Paper>
+          </Container>
+        </form>
+      </Paper>
+    </Grow>
   );
 };
 

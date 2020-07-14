@@ -14,6 +14,7 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Switch from '@material-ui/core/Switch';
 import IconButton from '@material-ui/core/IconButton';
+import Grow from '@material-ui/core/Grow';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
@@ -154,89 +155,91 @@ const StockList = () => {
     return <StockForm closeForm={closeForm} editItem={editItem} />;
   }
   return (
-    <Paper className={classes.root}>
-      <Typography variant="h4" align="center" color="primary" gutterBottom>
-        {StockInfo.title}
-      </Typography>
-      <Typography variant="subtitle2" align="center" color="error" gutterBottom>
-        {message}
-      </Typography>
-      <LoadingGif visible={loading} />
-      <IconButton
-        align="center"
-        aria-label="open"
-        color="primary"
-        disabled={loading}
-        onClick={openForm}
-      >
-        <AddCircleIcon />
-      </IconButton>
-      <TableContainer className={classes.container}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              {columns.map((column) => (
-                <TableCell
-                  key={uuidv4()}
-                  align="center"
-                  style={{ minWidth: column.minWidth }}
-                >
-                  {column.label}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {stocks.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((item) => (
-                <TableRow hover tabIndex={-1} key={uuidv4()}>
-                  <TableCell align="center" onClick={() => handleEdit(item)}>
-                    {item.name}
+    <Grow in timeout={3000}>
+      <Paper className={classes.root}>
+        <Typography variant="h4" align="center" color="primary" gutterBottom>
+          {StockInfo.title}
+        </Typography>
+        <Typography variant="subtitle2" align="center" color="error" gutterBottom>
+          {message}
+        </Typography>
+        <LoadingGif visible={loading} />
+        <IconButton
+          align="center"
+          aria-label="open"
+          color="primary"
+          disabled={loading}
+          onClick={openForm}
+        >
+          <AddCircleIcon />
+        </IconButton>
+        <TableContainer className={classes.container}>
+          <Table stickyHeader aria-label="sticky table">
+            <TableHead>
+              <TableRow>
+                {columns.map((column) => (
+                  <TableCell
+                    key={uuidv4()}
+                    align="center"
+                    style={{ minWidth: column.minWidth }}
+                  >
+                    {column.label}
                   </TableCell>
-                  <TableCell align="center" onClick={() => handleEdit(item)}>
-                    {item.currentPrice}
-                  </TableCell>
-                  <TableCell align="center">
-                    <Switch
-                      checked={item.status}
-                      onChange={() => handleChangeStatus(item)}
-                      color="primary"
-                      name="status"
-                    />
-                  </TableCell>
-                  <TableCell align="center">
-                    <IconButton
-                      aria-label="edit"
-                      color="primary"
-                      disabled={loading}
-                      onClick={() => handleEdit(item)}
-                    >
-                      <EditIcon fontSize="small" />
-                    </IconButton>
-                    <IconButton
-                      aria-label="delete"
-                      color="secondary"
-                      disabled={loading}
-                      onClick={() => handleDelete(item)}
-                    >
-                      <DeleteIcon fontSize="small" />
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
-              ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={stocks.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-      />
-    </Paper>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {stocks.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((item) => (
+                  <TableRow hover tabIndex={-1} key={uuidv4()}>
+                    <TableCell align="center" onClick={() => handleEdit(item)}>
+                      {item.name}
+                    </TableCell>
+                    <TableCell align="center" onClick={() => handleEdit(item)}>
+                      {item.currentPrice}
+                    </TableCell>
+                    <TableCell align="center">
+                      <Switch
+                        checked={item.status}
+                        onChange={() => handleChangeStatus(item)}
+                        color="primary"
+                        name="status"
+                      />
+                    </TableCell>
+                    <TableCell align="center">
+                      <IconButton
+                        aria-label="edit"
+                        color="primary"
+                        disabled={loading}
+                        onClick={() => handleEdit(item)}
+                      >
+                        <EditIcon fontSize="small" />
+                      </IconButton>
+                      <IconButton
+                        aria-label="delete"
+                        color="secondary"
+                        disabled={loading}
+                        onClick={() => handleDelete(item)}
+                      >
+                        <DeleteIcon fontSize="small" />
+                      </IconButton>
+                    </TableCell>
+                  </TableRow>
+                ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[10, 25, 100]}
+          component="div"
+          count={stocks.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+        />
+      </Paper>
+    </Grow>
   );
 };
 
