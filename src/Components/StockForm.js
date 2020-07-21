@@ -53,8 +53,8 @@ const StocksForm = ({ closeForm, editItem }) => {
     setMessage(null);
     try {
       const res = stock._id !== null
-        ? await axios.put(`api/stocks/${stock._id}`, stock)
-        : await axios.post('api/stocks/', stock);
+        ? await axios.put(`api/stocks/${stock._id}`, stock, { timeout: 5000 })
+        : await axios.post('api/stocks/', stock, { timeout: 5000 });
       setLoading(false);
       const { _id, name, currentPrice, status } = res.data;
       closeForm({ _id, name, currentPrice, status });

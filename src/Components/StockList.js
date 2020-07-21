@@ -66,7 +66,7 @@ const StockList = () => {
     setLoading(true);
     setMessage(null);
     try {
-      const res = await axios.get('/api/stocks');
+      const res = await axios.get('/api/stocks', { timeout: 5000 });
       if (res.data.length === 0) {
         openForm();
       } else {
@@ -107,7 +107,7 @@ const StockList = () => {
     try {
       const editing = { ...item };
       editing.status = !editing.status;
-      const res = await axios.put(`api/stocks/${item._id}`, editing);
+      const res = await axios.put(`api/stocks/${item._id}`, editing, { timeout: 5000 });
       const index = stocks.findIndex((p) => p._id === item._id);
       const auxStocks = [...stocks];
       auxStocks[index] = { ...auxStocks[index], status: !auxStocks[index].status };
@@ -131,7 +131,7 @@ const StockList = () => {
       setLoading(true);
       setMessage(null);
       try {
-        await axios.delete(`api/stocks/${item._id}`);
+        await axios.delete(`api/stocks/${item._id}`, { timeout: 5000 });
         const auxStocks = stocks.filter((p) => p._id !== item._id);
         setStocks(auxStocks);
       } catch (err) {
