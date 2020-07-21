@@ -67,7 +67,7 @@ const StocksForm = ({ closeForm, editItem }) => {
   return (
     <Grow in timeout={3000}>
       <Paper className={classes.root}>
-        <form className={classes.form} noValidate onSubmit={handleSubmit}>
+        <form className={classes.form} onSubmit={handleSubmit}>
           <CssBaseline />
           <Typography variant="h4" align="center" color="primary" gutterBottom>
             {StockInfo.title}
@@ -103,6 +103,7 @@ const StocksForm = ({ closeForm, editItem }) => {
                   variant="outlined"
                   id="currentPrice"
                   type="number"
+                  inputProps={{ min: '0' }}
                   value={stock.currentPrice}
                   label="Price"
                   onChange={handleChange}
