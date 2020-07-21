@@ -96,6 +96,7 @@ const StocksForm = ({ closeForm, editItem }) => {
                   value={stock.name}
                   label="name"
                   onChange={handleChange}
+                  required
                 />
                 <TextField
                   margin="dense"
@@ -107,6 +108,7 @@ const StocksForm = ({ closeForm, editItem }) => {
                   value={stock.currentPrice}
                   label="Price"
                   onChange={handleChange}
+                  required
                 />
                 <Button
                   className={classes.button}
